@@ -18,11 +18,18 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">      
-        <link href="{{ asset('css/bootstrap/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
         
         <!-- <link href="{{ asset('css/themes/css/bootstrappage.css')}}" rel="stylesheet"/> -->
 
     <!-- Styles -->
+    <style type="text/css">
+        .bv-form .help-block {
+    margin-bottom: 0;
+    color: #e3342f;
+}
+    </style>
 
 </head>
 <body>
@@ -92,10 +99,12 @@
         </main>
     </div>
     
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <script src="{{ asset('js/jquery.min.js') }}" ></script> 
     <script src="{{ asset('css/bootstrap/js/bootstrap.min.js')}}"></script>  
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>            
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
     <script>
         var SITEURL = '{{url('/')}}';  //this site url used for javascript file      
         var csrf_token = '{{csrf_token()}}';  //this site url used for javascript file      

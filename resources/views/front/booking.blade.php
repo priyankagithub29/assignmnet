@@ -10,7 +10,7 @@
                   @include('layouts.flash-message')
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('booking-create') }}">
+                    <form method="POST" action="{{ route('booking-create') }}" id="bookingForm">
                         @csrf
                          <div class="form-group row">
                             <label for="supplier_id" class="col-md-4 col-form-label text-md-right">{{ __('Supplier') }}</label>
@@ -79,11 +79,11 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="male"   autocomplete="gender" autofocus {{(old('gender') == 'male') ? 'checked' : ''}}>  Male 
+                                <input id="gender" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="male"   autocomplete="gender" autofocus {{(old('gender') == 'male') ? 'checked' : ''}}>  Male 
 
-                                <input id="phone" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="female"   autocomplete="gender" autofocus {{(old('gender') == 'female') ? 'checked' : ''}}>  Female 
+                                <input id="gender" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="female"   autocomplete="gender" autofocus {{(old('gender') == 'female') ? 'checked' : ''}}>  Female 
 
-                                <input id="phone" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="other"   autocomplete="gender" autofocus {{(old('gender') == 'other') ? 'checked' : ''}}>  Other 
+                                <input id="gender" type="radio" class=" @error('gender') is-invalid @enderror" name="gender" value="other"   autocomplete="gender" autofocus {{(old('gender') == 'other') ? 'checked' : ''}}>  Other 
 
                                 @error('gender')
                                     <span class="invalid-feedback" role="alert">
@@ -109,7 +109,7 @@
                             <label for="aadhar_number" class="col-md-4 col-form-label text-md-right">{{ __('Aadhar number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="aadhar_number" type="number" class="form-control @error('aadhar_number') is-invalid @enderror" name="aadhar_number" value="{{ old('aadhar_number') }}"   autocomplete="aadhar_number" autofocus>
+                                <input id="aadhar_number" type="number" class="form-control @error('aadhar_number') is-invalid @enderror" name="aadhar_number" value="{{ old('aadhar_number') }}"   autocomplete="aadhar_number" autofocus >
 
                                 @error('aadhar_number')
                                     <span class="invalid-feedback" role="alert">
@@ -213,6 +213,7 @@
                        
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
+
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Book') }}
                                 </button>
@@ -228,4 +229,108 @@
 
 @section('script')
     <script src="{{ asset('js/cityStateAjaxList.js') }}" ></script> 
+
+    <script>
+    $(document).ready(function() {
+    $('#bookingForm').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+       
+       fields: {
+            supplier_id: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select supplier name'
+                    }
+                }
+            },
+            cylinder: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select cylinder'
+                    }
+                }
+            },
+            name: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter name'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter phone'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select gender'
+                    }
+                }
+            },
+            age: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select age'
+                    }
+                }
+            },
+            aadhar_number: {
+                stringLength: {
+                        min: 12,
+                        max: 12,
+                        message: 'The aadhar number must be 12 number'
+                    },
+                validators: {
+                        notEmpty: {
+                        message: 'Please select aadhar number'
+                    }
+                }
+            },
+            identity_proof: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select identity proof'
+                    }
+                }
+            },
+            covid_status: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select covid status'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter address'
+                    }
+                }
+            },
+             state: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select state'
+                    }
+                }
+            },
+             city: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select city'
+                    }
+                }
+            },
+            
+        }
+        })
+     
+});
+
+
+    </script>
 @endsection

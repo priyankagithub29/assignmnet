@@ -11,7 +11,7 @@
                 success: function (data) {
                     $('#city_id').empty();
                     $.each(data, function (val, text) {
-                        $('#city_id').append($('<option></option>').val(val).html(text));
+                        $('#city_id').append($('<option></option>').val(val).html(text).attr('selected', val == "{{old('city_id')}}" ? true : false));
                     });
                 }
             });

@@ -10,7 +10,7 @@
 
                 <div class="card-body">
 
-                    <form method="POST" action="{{ route('supplier-create') }}">
+                    <form method="POST" action="{{ route('supplier-create') }}" id="registrationForm">
                         @csrf
 
                         <div class="form-group row">
@@ -113,7 +113,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="address"  class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"   autocomplete="address" autofocus></textarea>
+                                <textarea id="address"  class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"   autocomplete="address" autofocus>{{ old('address') }}</textarea>
 
                                 @error('identity_proof')
                                     <span class="invalid-feedback" role="alert">
@@ -198,4 +198,119 @@
 
 @section('script')
     <script src="{{ asset('js/cityStateAjaxList.js') }}" ></script> 
+    <script>
+    $(document).ready(function() {
+    $('#registrationForm').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+       
+       fields: {
+            name: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter name'
+                    }
+                }
+            },
+             email: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter phone'
+                    },
+                    emailAddress: {
+                        message: 'The input is not a valid email address'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter phone'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select gender'
+                    }
+                }
+            },
+            age: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select age'
+                    }
+                }
+            },
+            aadhar_number: {
+                stringLength: {
+                        min: 12,
+                        max: 12,
+                        message: 'The aadhar number must be 12 number'
+                    },
+                validators: {
+                        notEmpty: {
+                        message: 'Please select aadhar number'
+                    }
+                }
+            },
+            identity_proof: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select identity proof'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please enter address'
+                    }
+                }
+            },
+             state: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select state'
+                    }
+                }
+            },
+             city: {
+                validators: {
+                        notEmpty: {
+                        message: 'Please select city'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    identical: {
+                        field: 'password_confirmation',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    notEmpty: {
+                        message: 'Please enter password'
+                    }
+                }
+            },
+            password_confirmation: {
+                validators: {
+                    identical: {
+                        field: 'password',
+                        message: 'The password and its confirm are not the same'
+                    },
+                    notEmpty: {
+                        message: 'Please enter confirm password'
+                    }
+                }
+            },
+             
+            
+        }
+        })
+     
+});
+
+
+    </script>
 @endsection
